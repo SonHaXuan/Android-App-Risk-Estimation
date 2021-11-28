@@ -35,7 +35,6 @@ _If you wish to run the tutorial, you can use the following commands_
 ## Usage
 Available methods:
 - [Function and Constanst](#function-and-constanst): Retrieves the Function/Constanst of an application.
-- [Privacy policy analysis](#privacy-policy-analysis): Retrieves the privacy policy of an application.
 - [Calculate distance hybrid](#calculate-distance-hybrid): Calculate the distance of an application based on hybrid analysis.
 - [Prediction](#prediction): Retrieves the prediction of an application by 4 approaches
 ### Function and Constanst

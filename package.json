@@ -20,7 +20,7 @@
     "em": "babel-watch src/modules/em.js",
     "apktojava": "babel-watch src/modules/apk_to_java.js",
     "computingDistance": "babel-watch src/modules/distance-app.js",
-    "computingDistanceV2": "babel-watch src/modules/distance-app-v2.js",
+    "computingDistanceV2": "babel-watch src/modules/distance-app-hybrid.js",
     "getAppInfo": "babel-node --max-old-space-size=30000 src/modules/get-appInfo-from-packageId.js",
     "privacyPolicyAnalysis": "babel-node --max-old-space-size=30000 src/modules/privacy-policy-analysis.js.js",
     "downloadApk": "babel-node --max-old-space-size=30000 src/modules/download-apk.js",

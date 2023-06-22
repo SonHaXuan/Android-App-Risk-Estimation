@@ -1,6 +1,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This is the implementation for our article "A Risk Estimation Mechanism for Android Apps based on Hybrid Analysis", which submit at Pervasive and Mobile Computing. This article is the extend version of IEEE-SmartIoT paper (2021) -  https://ieeexplore.ieee.org/abstract/document/9556197/. This project is the proof-of-concept for the hybrid analysis, in which the static is re-used our IEEE-SmartIoT paper and the dynamic we consider the network traffic analysis to capture the type of data sharing. Let waiting for the final version of the article :) .
+This is the implementation for our article "A Risk Estimation Mechanism for Android Apps based on Hybrid Analysis". This article is the extend version of IEEE-SmartIoT paper (2021) -  https://ieeexplore.ieee.org/abstract/document/9556197/. This project is the proof-of-concept for the hybrid analysis, in which the static is re-used our IEEE-SmartIoT paper and the dynamic we consider the network traffic analysis to capture the type of data sharing.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Prerequisites

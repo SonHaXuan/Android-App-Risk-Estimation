@@ -1,0 +1,113 @@
+[{
+  "_id": {
+    "$oid": "6099509175eb8759f98a2fc9"
+  },
+  "nodes": [
+    {
+      "_id": {
+        "$oid": "602951b0163e554ddd9a142d"
+      },
+      "name": "getType()",
+      "parent": {
+        "$oid": "602951af163e554ddd9a13f4"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520c163e554ddd9a180f"
+      },
+      "name": "getPath()",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520d163e554ddd9a1816"
+      },
+      "name": "getScheme()",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520e163e554ddd9a181f"
+      },
+      "name": "parse(String uriString)",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "602951ad163e554ddd9a13aa"
+      },
+      "name": "toString()",
+      "parent": {
+        "$oid": "602951ad163e554ddd9a13a3"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520d163e554ddd9a1812"
+      },
+      "name": "getQuery()",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520a163e554ddd9a17fe"
+      },
+      "name": "decode(String s)",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60295408163e554ddd9a1f46"
+      },
+      "name": "encode(String s, String enc)",
+      "parent": {
+        "$oid": "60295408163e554ddd9a1f45"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520b163e554ddd9a1800"
+      },
+      "name": "encode(String s)",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "602951ff163e554ddd9a17a0"
+      },
+      "name": "getHost()",
+      "parent": {
+        "$oid": "602951fe163e554ddd9a179a"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "6029520b163e554ddd9a1804"
+      },
+      "name": "getAuthority()",
+      "parent": {
+        "$oid": "6029520a163e554ddd9a17fb"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2021-05-10T15:26:09.535Z"
+  },
+  "updatedAt": {
+    "$date": "2021-05-10T15:26:09.535Z"
+  },
+  "__v": 0
+}]

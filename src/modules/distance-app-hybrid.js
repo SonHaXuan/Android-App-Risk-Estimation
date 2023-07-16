@@ -296,156 +296,21 @@ function getDistanceFromNodeToCommonNode(node, commonNode) {
 async function computingDistance() {
   try {
     console.log("Running computingDistance");
-    // for (let i = 0; i < categories.length; i++) {
-    //   const category = categories[i];
-    //   console.log(`Running on ${category} category`);
+
     // GET DAP
     const dapCategory = await Models.CategoryDataset.findOne({
       // categoryName: category,
     });
     const trees = (await createTree(_.map(dapCategory.nodes, "name")))[0];
 
-    //
-    // const appsOurDataSet = await Models.BeginDataset.find({
-    //   // categoryName: category,
-    //   // isCompleted: true,
-    // });
-    // console.log(1, appsOurDataSet.length);
-    // for (let k = 0; k < appsOurDataSet.length; k++) {
-    //   try {
-    //     const app = appsOurDataSet[k];
-    //     console.log(`app ${k}.${app.appName}`);
-    //     const appNodes = app.nodes;
-    //     let totalDistance = 0;
-    //     let totalLeafNode = 0;
-    //     // ============ LOOP TREES =============
-    //     for (let j = 0; j < trees.children.length; j++) {
-    //       const treeChild = trees.children[j];
-
-    //       let flattenTree = [];
-
-    //       initBaseLineForTree(treeChild, _.map(appNodes, "name"));
-    //       getFlattenTrees(JSON.parse(JSON.stringify(treeChild)), flattenTree);
-
-    //       // compareing nodes
-    //       let comparingNodes = flattenTree.filter(
-    //         (item) => item.baseLine === 1
-    //       );
-
-    //       totalLeafNode += comparingNodes.length;
-    //       for (let g = 0; g < comparingNodes.length; g++) {
-    //         const comparingNode = comparingNodes[g];
-    //         const comparedNode = getComparedNodes(comparingNode, treeChild);
-
-    //         let result;
-    //         // if comparedNode exist
-    //         if (comparedNode) {
-    //           if (comparingNode.path === comparedNode.path) {
-    //             result = 0;
-    //           } else {
-    //             const commonNode = getCommonNode(
-    //               comparingNode,
-    //               comparedNode,
-    //               treeChild
-    //             );
-
-    //             const vRoot = treeChild.baseLine;
-    //             const vCaa = getBaseLineVaLueOfNode(commonNode, treeChild);
-    //             const depthCaa = getDistanceToCommonNode(commonNode);
-
-    //             const vN1 = getBaseLineVaLueOfNode(comparingNode, treeChild);
-
-    //             const vN2 = getBaseLineVaLueOfNode(comparedNode, treeChild);
-
-    //             const disN1 = getDistanceFromNodeToCommonNode(
-    //               comparingNode,
-    //               commonNode
-    //             );
-
-    //             const disN2 = getDistanceFromNodeToCommonNode(
-    //               comparedNode,
-    //               commonNode
-    //             );
-
-    //             result =
-    //               1 -
-    //               ((2 * (1 - vCaa) * depthCaa) /
-    //                 ((1 - vN1) * disN1 * (1 - vCaa) +
-    //                   (1 - vN2) * disN2 * (1 - vCaa) +
-    //                   2 * (1 - vCaa) * depthCaa) || 0);
-
-    //             // giai thuat ban đầu
-    //             // const result =
-    //             // 1 -
-    //             // ((2 * (1 - vRoot) * (1 - vCaa) * depthCaa) /
-    //             //   ((1 - vN1) * disN1 * (1 - vCaa) +
-    //             //     (1 - vN2) * disN2 * (1 - vCaa) +
-    //             //     2 * (1 - vRoot) * (1 - vCaa) * depthCaa) || 0);
-    //           }
-    //           // console.log(vRoot, vCaa, depthCaa, vN1, vN2, disN1, disN2, result);
-    //         }
-    //         // not exist
-    //         else {
-    //           result = 1; // khong co nut de so sanh
-    //         }
-    //         totalDistance += result;
-    //       }
-    //     }
-    //     const distance = totalDistance / totalLeafNode;
-    //     await Models.BeginDataset.updateOne(
-    //       {
-    //         _id: app.id,
-    //       },
-    //       {
-    //         $set: {
-    //           distance: distance || 0,
-    //         },
-    //       }
-    //     );
-    //     console.log(
-    //       `App Id ${app.id}: ${distance}`,
-    //       totalDistance,
-    //       totalLeafNode
-    //     );
-    //   } catch (err) {
-    //     console.log(err.message);
-    //   }
-    // }
-
-    //
-    // const appsMDRoid = await Models.MaliciousDataset.find({
-    //   // categoryName: category,
-    //   // isCompleted: true,
-    // });
-    // let beginApps = await Models.BeginDataset.find()
-    //   .sort({
-    //     createdAt: "desc",
-    //   })
-    //   .limit(200);
-    // beginApps = _.map(beginApps, (app) => {
-    //   app = app.toJSON();
-    //   return { ...app, type: "begin" };
-    // });
-    // let maliciousApps = await Models.MaliciousDataset.find()
-    //   .sort({
-    //     createdAt: "desc",
-    //   })
-    //   .limit(829);
-    // maliciousApps = _.map(maliciousApps, (app) => {
-    //   app = app.toJSON();
-    //   return { ...app, type: "malicious" };
-    // });
-    // const testingApps = [...beginApps, ...maliciousApps];
-
     const testingApps = await Models.App.find({
       $or: [{ supplier: "mobipurpose" }, { isExistedMobiPurpose: true }],
       isCompleted: true,
-    });
+    })
 
     for (let k = 0; k < testingApps.length; k++) {
       try {
         const app = testingApps[k];
-        console.log(`app ${k}.${app.appName}`);
         const appNodes = app.nodes;
         let totalDistance = 0;
         let totalLeafNode = 0;
@@ -509,38 +374,56 @@ async function computingDistance() {
                   app.dynamicFunctions.includes(comparingNode.name) ||
                   app.dynamicApis.includes(comparingNode.name)
                 ) {
-                  const dataTypes = ['User Profile', 'Location', 'Media', 'Health & Fitness', 'Hardware', 'Connection', 'Telephony']
+                  const dataTypes = [
+                    "User Profile",
+                    "Location",
+                    "Media",
+                    "Health & Fitness",
+                    "Hardware",
+                    "Connection",
+                    "Telephony",
+                  ];
 
-                  const dynamicGroup = JSON.parse(app.dynamicGroup)
-                  const staticGroup = JSON.parse(app.staticGroup)
+                  const dynamicGroup = JSON.parse(app.dynamicGroup);
+                  const staticGroup = JSON.parse(app.staticGroup);
 
-                  let dataTypeValue = 0
+                  let dataTypeValue = 0;
                   for (const dataType of dataTypes) {
-                    const dataTypeDynamic = dynamicGroup.find(item => item.name === dataType)
-                    const dataTypeStatic = staticGroup.find(item => item.name === dataType)
+                    const dataTypeDynamic = dynamicGroup.find(
+                      (item) => item.name === dataType
+                    );
+                    const dataTypeStatic = staticGroup.find(
+                      (item) => item.name === dataType
+                    );
 
-                    let dynamicFunctionsByDataType = []
-                    if(dataTypeDynamic)  {
+                    let dynamicFunctionsByDataType = [];
+                    if (dataTypeDynamic) {
                       // get dynamic constants by data type
-                      dynamicFunctionsByDataType = (dataTypeDynamic.apis || []).reduce((acc, api) => {
-                        acc = [...acc, ...(api.constants || [])]
-                        return acc
-                      }, [])
+                      dynamicFunctionsByDataType = (
+                        dataTypeDynamic.apis || []
+                      ).reduce((acc, api) => {
+                        acc = [...acc, ...(api.constants || [])];
+                        return acc;
+                      }, []);
                     }
 
-                    let staticFunctionsByDataType = []
-                    if(dataTypeStatic)  {
+                    let staticFunctionsByDataType = [];
+                    if (dataTypeStatic) {
                       // get static constants by data type
-                      staticFunctionsByDataType = (dataTypeStatic.apis || []).reduce((acc, api) => {
-                        acc = [...acc, ...(api.constants || [])]
-                        return acc
-                      }, [])
+                      staticFunctionsByDataType = (
+                        dataTypeStatic.apis || []
+                      ).reduce((acc, api) => {
+                        acc = [...acc, ...(api.constants || [])];
+                        return acc;
+                      }, []);
                     }
-                    
-                    const weight = dynamicFunctionsByDataType.length / staticFunctionsByDataType.length
-                    dataTypeValue += (result + weight)
+
+                    const weight =
+                      dynamicFunctionsByDataType.length /
+                      staticFunctionsByDataType.length;
+                    dataTypeValue += result + weight;
                   }
-                  result = dataTypeValue / 7
+                  dataTypeValue && (result = dataTypeValue / 7);
                 }
               }
             }
@@ -553,27 +436,25 @@ async function computingDistance() {
         }
         const distance = totalDistance / totalLeafNode;
 
-        await Models.App.updateOne(
-          {
-            _id: app.id,
-          },
-          {
-            $set: {
-              distance: (distance || 0) / 7,
-            },
-          }
-        );
+        // await Models.App.updateOne(
+        //   {
+        //     _id: app.id,
+        //   },
+        //   {
+        //     $set: {
+        //       distance: (distance || 0) / 7,
+        //     },
+        //   }
+        // );
         console.log(
-          `App Id ${app.id}: ${distance}`,
-          totalDistance,
-          totalLeafNode
+          `App name ${app.appName} - distance: ${distance}`,
         );
       } catch (err) {
         console.log(err.message);
       }
     }
     // }
-    console.log("Done computingDistance");
+    console.log("Done");
   } catch (err) {
     console.log("MAIN", err);
   }

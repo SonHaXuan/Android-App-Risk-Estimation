@@ -1,10 +1,9 @@
-import jwt from "jsonwebtoken";
 import axios from "axios";
 class Prediction {
   constructor() {
     this.API = axios.create({
       baseURL: "http://localhost:5000",
-      timeout: 60 * 1000
+      timeout: 60 * 1000,
     });
   }
 

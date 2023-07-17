@@ -67,6 +67,17 @@ npm run computingDistanceV2
   pages={237--244},
   year={2021},
   organization={IEEE}
-  } 
+  }
+
+   @article{son2022risk,
+  title={A risk estimation mechanism for android apps based on hybrid analysis},
+  author={Son, Ha Xuan and Carminati, Barbara and Ferrari, Elena},
+  journal={Data Science and Engineering},
+  volume={7},
+  number={3},
+  pages={242--252},
+  year={2022},
+  publisher={Springer}
+   }
 ```
 <p align="right">(<a href="#top">back to top</a>)</p>

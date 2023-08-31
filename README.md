@@ -29,7 +29,7 @@ _If you wish to run the tutorial, you can use the following commands_
    ...
    ```
 ### Create collections for mongodb
-Create `trees` and `categorydatasets` collection and use the files in <a href="https://github.com/SonHaXuan/Android-App-Risk-Estimation/tree/master/data" target="_blank">/data</a> folder corresponding to import data to MongoDB
+Create `apps`, `trees` and `categorydatasets` collection and use the files in <a href="https://github.com/SonHaXuan/Android-App-Risk-Estimation/tree/master/data" target="_blank">/data</a> folder corresponding to import data to MongoDB
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
